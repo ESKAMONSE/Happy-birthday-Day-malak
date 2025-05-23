@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css?family=Fredericka+the+Great|Lovers+Quarrel');
+
+body {
+  background-color: white;
+  animation-name: beat-back;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  margin: 0; /* مهم لإزالة المسافات الزائدة */
+  overflow-x: hidden; /* لمنع ظهور شريط التمرير الأفقي */
+}
+
+.back {
+    /* تنسيقاتك الأصلية هنا، بس ممكن تزود position: relative; لو هتضيف عناصر جوه */
+}
+
+#gift-wrapper {
+    position: relative; /* ممكن تحتاج ده عشان القلب اللي جواه يتحرك نسبة ليه */
+    min-height: 100vh; /* عشان يضمن إن فيه مساحة كافية للمحتوى */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.topic {
+  text-align: center;
+  /* opsition: absolute;  -> دي غلط إملائي، والصحيح position: absolute; لو محتاجها */
+  margin: 10px 0px 10px 0px;
+  font-family: 'Fredericka the Great', cursive; /* أضفت 'cursive' كبديل */
+  font-size: 3em; /* مثال لحجم الخط */
+}
+
+.content-1 {
+  text-align: center;
+  /* opsition: absolute;  -> دي غلط إملائي */
+  margin: 30px 0px 10px 0px;
+  font-family: 'Lovers Quarrel', cursive; /* أضفت 'cursive' كبديل */
+  font-size: 40px;
+}  
+
+.content-2 {
+  text-align: center;
+  /* opsition: absolute;  -> دي غلط إملائي */
+  margin: 0px 0px 80px 0px;
+  font-family: 'Lovers Quarrel', cursive; /* أضفت 'cursive' كبديل */
+  font-size: 40px;
+}  
+
+.footer {
+  text-align: center;
+  /* opsition: absolute;  -> دي غلط إملائي */
+  margin: 80px 0px 10px 0px;
+  font-family: 'Fredericka the Great', cursive; /* أضفت 'cursive' كبديل */
+}
+
+.heart {
+  /* تنسيقات القلب الأصلية */
+  margin: auto;
+  background-color: pink;
+  height: 100px;
+  width: 100px;
+  transform: rotate(-45deg);
+  animation-name: beat;
+  animation-duration: 1s;
+  animation-iteration-count: infinite; 
+  cursor: pointer; /* عشان يبين إنه قابل للضغط */
+  position: relative; /* مهم عشان Pseudo-elements تشتغل صح */
+  z-index: 20; /* عشان يكون فوق كل حاجة */
+}
+
+.heart:after {
+  background-color: pink;
+  content: "";
+  border-radius: 50%;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 0px;
+  left: 50px;
+}
+
+.heart:before {
+  background-color: pink;
+  content: "";
+  border-radius: 50%;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: -50px;
+  left: 0px;
+}
+
+.heart:hover {
+  background-color: #990000;
+  animation-duration: 200ms;
+  transform: scale(1.3) rotate(-45deg);
+}
+
+.heart:hover:before,
+.heart:hover:after { /* جمعتهم عشان يتأثروا كلهم بالـ hover */
+  background-color: #990000;
+}
+
+/* الكود الجديد لانتشار كلمة أنس */
+#anas-spread-container {
+    position: fixed; /* عشان تغطي الشاشة كلها */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* عشان ما تعطلش الضغط على عناصر تانية */
+    overflow: hidden; /* عشان الكلمات اللي تطلع بره الشاشة ما تعملش scroll */
+    z-index: 15; /* تحت القلب لكن فوق باقي المحتوى */
+}
+
+.anas-word {
+    position: absolute;
+    font-size: 24px; /* حجم الكلمة */
+    color: #ff69b4; /* لون وردي لطيف */
+    font-weight: bold;
+    opacity: 0; /* مخفية في البداية */
+    transform: scale(0); /* حجمها صفر في البداية */
+    transition: opacity 1s ease-out, transform 1s ease-out; /* حركة ناعمة للظهور الأولي */
+    white-space: nowrap; /* عشان الكلمة متتقسمش على سطرين */
+}
+
+
+@keyframes beat {
+  0% {
+      transform: scale(1) rotate(-45deg);
+    }
+  50% {
+      transform: scale(0.8) rotate(-45deg);
+    }
+}
+
+@keyframes beat-back {
+  50% {
+      background: #ffe6f2;
+    }
+}
